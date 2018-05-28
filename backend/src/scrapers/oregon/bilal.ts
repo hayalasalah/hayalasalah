@@ -9,7 +9,7 @@ import { Browser } from "puppeteer";
 import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
 import { FRIDAY, guessDay } from "../../utils";
 import {
-  abortMediaRequets,
+  abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
   getTableData,
@@ -22,7 +22,7 @@ function getXPathString(day: number, index: number) {
 
 export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
-  abortMediaRequets(page);
+  abortMediaRequests(page);
 
   await page.goto("http://www.bilalmasjid.com/Prayer/Daily.aspx");
 

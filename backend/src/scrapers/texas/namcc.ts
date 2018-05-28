@@ -8,7 +8,7 @@ import { DateTime } from "luxon";
 import { Browser } from "puppeteer";
 import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
 import {
-  abortMediaRequets,
+  abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
   getTableData,
@@ -23,7 +23,7 @@ function getXPathString(day: number, index: number, adhan: boolean) {
 
 export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
-  abortMediaRequets(page);
+  abortMediaRequests(page);
 
   await page.goto("http://www.namcc.org/prayer-time-table/");
 

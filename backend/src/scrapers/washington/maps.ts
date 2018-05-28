@@ -8,7 +8,7 @@ import { DateTime } from "luxon";
 import { Browser } from "puppeteer";
 import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
 import {
-  abortMediaRequets,
+  abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
   getTableData,
@@ -21,7 +21,7 @@ function getXPathString(day: number, index: number) {
 
 export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
-  abortMediaRequets(page);
+  abortMediaRequests(page);
 
   await page.goto(
     "https://www.mapsredmond.org/2015/11/12/maps-2015-prayer-calendar/"

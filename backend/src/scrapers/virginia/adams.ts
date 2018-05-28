@@ -7,7 +7,7 @@
 import { Browser } from "puppeteer";
 import { DaySchedule, Prayer, PrayerTimeTable } from "../../types/PrayerTime";
 import {
-  abortMediaRequets,
+  abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
   stringToDateTime
@@ -21,7 +21,7 @@ function getXPathString(prayerIndex: number, adhan: boolean) {
 
 export async function scrapeAdams(browser: Browser): Promise<DaySchedule> {
   const page = await browser.newPage();
-  await abortMediaRequets(page);
+  await abortMediaRequests(page);
 
   await page.setViewport({ width: 1920, height: 1080 });
   await page.goto("https://www.adamscenter.org/salat_times.php", {

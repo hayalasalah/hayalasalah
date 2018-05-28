@@ -9,7 +9,11 @@ import { Browser, Page } from "puppeteer";
 import { DaySchedule, Prayer, PrayerTimeTable } from "../../types/PrayerTime";
 import { getAdhanTimes } from "../../utils/adhanUtil";
 import { jsDateToDateTime } from "../../utils/time";
-import { abortMediaRequets, getDataForXPath, stringToDateTime } from "../utils";
+import {
+  abortMediaRequests,
+  getDataForXPath,
+  stringToDateTime
+} from "../utils";
 
 const getXPath = (i: number) =>
   `//*[@id="wsite-content"]/div[2]/div/div/table/tbody/tr/td[2]/div[1]/font/strong[${i}]/font`;
@@ -50,7 +54,7 @@ function getMaghrib(): DateTime {
 
 export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
-  abortMediaRequets(page);
+  abortMediaRequests(page);
 
   await page.goto("http://www.masjidbilalnz.org/");
 

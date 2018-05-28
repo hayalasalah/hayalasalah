@@ -9,7 +9,7 @@ import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
 import { snooze } from "../../utils";
 import { scrapeTableRow } from "../../utils/TableScraper";
 import {
-  abortMediaRequets,
+  abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
   stringToDateTime
@@ -23,7 +23,7 @@ function getXPathString(prayerIndex: number, adhan: boolean) {
 
 export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
-  await abortMediaRequets(page);
+  await abortMediaRequests(page);
 
   await page.goto("https://www.alsalammasjid.org", {
     waitUntil: "networkidle2"

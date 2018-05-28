@@ -14,7 +14,7 @@ import {
 } from "../../types/PrayerTime";
 import { guessDay } from "../../utils";
 import {
-  abortMediaRequets,
+  abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
   getTableData,
@@ -35,7 +35,7 @@ function getIqamahXPath(prayerName: string) {
 
 export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
-  await abortMediaRequets(page);
+  await abortMediaRequests(page);
 
   await page.goto("http://www.redmondmosque.org");
 

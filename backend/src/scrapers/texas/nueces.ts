@@ -13,7 +13,7 @@ import {
   PrayerTimeTable
 } from "../../types/PrayerTime";
 import {
-  abortMediaRequets,
+  abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
   getTableData,
@@ -26,7 +26,7 @@ function getXPathString(tableIndex: number) {
 
 export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
-  await abortMediaRequets(page);
+  await abortMediaRequests(page);
 
   await page.goto("http://nuecesmosque.com");
 

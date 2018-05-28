@@ -7,7 +7,7 @@
 import { Browser } from "puppeteer";
 import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
 import {
-  abortMediaRequets,
+  abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
   stringToDateTime
@@ -19,7 +19,7 @@ function getIqamahXPath(index: number): string {
 
 export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
-  await abortMediaRequets(page);
+  await abortMediaRequests(page);
 
   await page.goto("http://icbrushycreek.org/ramadan/");
 

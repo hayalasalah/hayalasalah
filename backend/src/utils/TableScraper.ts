@@ -9,7 +9,7 @@ import { getDataForXPath, stringToDateTime } from "../scrapers/utils";
 import { Prayer } from "../types/PrayerTime";
 
 export interface TableScraperParams {
-  adhanXPath: string;
+  adhanXPath?: string;
   iqamahXPath: string;
   timeFormat: string;
   timeZone: string;
@@ -22,14 +22,6 @@ export async function scrapeTableRow(
 ): Promise<Prayer> {
   const addHalfDay = params.isFajr === undefined ? false : !params.isFajr;
 
-  const adhanString = await getDataForXPath(page, params.adhanXPath);
-  const adhan = stringToDateTime(
-    adhanString,
-    params.timeFormat,
-    params.timeZone,
-    addHalfDay
-  );
-
   const iqamahString = await getDataForXPath(page, params.iqamahXPath);
   const iqamah = stringToDateTime(
     iqamahString,
@@ -37,6 +29,17 @@ export async function scrapeTableRow(
     params.timeZone,
     addHalfDay
   );
+
+  let adhan;
+  if (params.adhanXPath !== undefined) {
+    const adhanString = await getDataForXPath(page, params.adhanXPath);
+    adhan = stringToDateTime(
+      adhanString,
+      params.timeFormat,
+      params.timeZone,
+      addHalfDay
+    );
+  }
 
   return {
     adhan,

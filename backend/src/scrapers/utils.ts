@@ -8,7 +8,7 @@ import { DateTime, Duration, Zone } from "luxon";
 import { ElementHandle, Frame, Page } from "puppeteer";
 import { DaySchedule, Prayer, PrayerName } from "../types/PrayerTime";
 
-export async function abortMediaRequets(page: Page) {
+export async function abortMediaRequests(page: Page) {
   await page.setRequestInterception(true);
 
   page.on("request", async req => {

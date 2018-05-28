@@ -20,7 +20,8 @@ export const scrapersList: ScrapersList = {
     "virginia/adams-sterling",
     "houston/alsalam",
     "dallas/irving",
-    "houston/bilal"
+    "houston/bilal",
+    "houston/cypress"
   ],
   monthly: ["oregon/bilal", "oregon/assaber", "texas/namcc", "washington/maps"]
 };

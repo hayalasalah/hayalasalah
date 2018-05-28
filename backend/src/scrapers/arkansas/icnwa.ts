@@ -6,7 +6,7 @@
 
 import { Browser, Page } from "puppeteer";
 import { PrayerTimeTable } from "../../types/PrayerTime";
-import { guessDay } from "../../utils";
+import { guessDay, snooze } from "../../utils";
 import {
   abortMediaRequets,
   arrayOfPrayersToDaySchedule,
@@ -23,8 +23,6 @@ async function clickButtonAndWaitForModal(page: Page) {
   const [button] = await page.$x(buttonXPath);
   await button.click();
 }
-
-const snooze = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();

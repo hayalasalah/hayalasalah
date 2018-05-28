@@ -9,6 +9,9 @@ import { DaySchedule, PrayerName } from "../types/PrayerTime";
 
 export const FRIDAY = 5;
 
+export const snooze = (ms: number) =>
+  new Promise(resolve => setTimeout(resolve, ms));
+
 export function toDateTime(time: DateTime | string) {
   if (typeof time === "string") {
     return DateTime.fromISO(time, { setZone: true });

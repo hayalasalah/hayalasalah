@@ -5,7 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import { DateTime, Duration, Zone } from "luxon";
-import { ElementHandle, Page } from "puppeteer";
+import { ElementHandle, Frame, Page } from "puppeteer";
 import { DaySchedule, Prayer, PrayerName } from "../types/PrayerTime";
 
 export async function abortMediaRequets(page: Page) {
@@ -51,7 +51,7 @@ export function stringToDateTime(
 }
 
 export async function getDataForXPath(
-  page: Page,
+  page: Page | Frame,
   xpath: string
 ): Promise<string> {
   const [handle] = await page.$x(xpath);

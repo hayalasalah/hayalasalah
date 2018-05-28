@@ -7,48 +7,6 @@
 import { DateTime } from "luxon";
 import { DaySchedule, Prayer, PrayerName } from "../../types/PrayerTime";
 
-export const FRIDAY = 5;
-
-export function nextPrayer(
-  current: PrayerName,
-  isJummah: boolean = false
-): PrayerName {
-  switch (current) {
-    case "fajr":
-      return isJummah ? "zuhr" : "jummah";
-    case "zuhr":
-      return "asr";
-    case "asr":
-      return "maghrib";
-    case "maghrib":
-      return "isha";
-    case "isha":
-      return "fajr";
-    case "jummah":
-      return "asr";
-  }
-}
-
-export function guessDay(
-  schedule: DaySchedule,
-  basedOn: PrayerName = "fajr"
-): DateTime {
-  const prayer = schedule[basedOn];
-
-  if (basedOn === "isha" && prayer === undefined) {
-    throw Error("Unable to determine day");
-  }
-
-  if (prayer === undefined) {
-    return guessDay(schedule, nextPrayer(basedOn));
-  } else if (Array.isArray(prayer)) {
-    const [prayerTime] = prayer;
-    return prayerTime.iqamah;
-  } else {
-    return prayer.iqamah;
-  }
-}
-
 export function jsDateToDateTime(date: any, timezone: string): DateTime {
   const dt = DateTime.fromJSDate(date).setZone(timezone);
   if (dt.isValid === false) {

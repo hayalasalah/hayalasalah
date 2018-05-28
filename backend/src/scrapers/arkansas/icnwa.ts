@@ -6,11 +6,11 @@
 
 import { Browser, Page } from "puppeteer";
 import { PrayerTimeTable } from "../../types/PrayerTime";
+import { guessDay } from "../../utils";
 import {
   abortMediaRequets,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
-  guessDay,
   stringToDateTime
 } from "../utils";
 
@@ -31,7 +31,7 @@ export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
 
   await page.goto("http://icnwa.com");
 
-  await snooze(500); // need to snooze so page loads....
+  await snooze(1000); // need to snooze so page loads....
   await await clickButtonAndWaitForModal(page);
 
   const results = [];

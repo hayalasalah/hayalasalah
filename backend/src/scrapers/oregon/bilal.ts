@@ -7,13 +7,12 @@
 import { DateTime } from "luxon";
 import { Browser } from "puppeteer";
 import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
+import { FRIDAY, guessDay } from "../../utils";
 import {
   abortMediaRequets,
   arrayOfPrayersToDaySchedule,
-  FRIDAY,
   getDataForXPath,
   getTableData,
-  guessDay,
   stringToDateTime
 } from "../utils";
 

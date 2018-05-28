@@ -12,12 +12,12 @@ import {
   PrayerName,
   PrayerTimeTable
 } from "../../types/PrayerTime";
+import { guessDay } from "../../utils";
 import {
   abortMediaRequets,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
   getTableData,
-  guessDay,
   stringToDateTime
 } from "../utils";
 

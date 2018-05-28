@@ -17,7 +17,7 @@ import {
   PrayerTimeTable
 } from "../../types/PrayerTime";
 import { connectToBrowser } from "../utils/browser";
-import { FRIDAY, guessDay } from "../utils/time";
+import { printTimeTable } from "../utils/print";
 
 export const command = "scrape <mosque>";
 export const describe = "Scrape a mosque and pretty print the result";
@@ -25,53 +25,6 @@ export const builder = {};
 
 export interface ScrapeArguments extends Argv {
   mosque: string;
-}
-
-const prayerName = chalk.bold.green;
-
-function printSingleJamat(name: PrayerName, prayer: Prayer) {
-  const adhan = prayer.adhan ? prayer.adhan.toFormat("HH:mm") : "-";
-  const iqamah = prayer.iqamah.toFormat("HH:mm");
-  console.log(`\t${prayerName(name)}\t${adhan}\t${iqamah}`);
-}
-
-function printMultipleJamat(name: PrayerName, jamats: Prayer[]) {
-  console.log(`\t${prayerName(name)}`);
-  for (const jamat of jamats) {
-    const adhan = jamat.adhan ? jamat.adhan.toFormat("HH:mm") : "-";
-    const iqamah = jamat.iqamah.toFormat("HH:mm");
-    console.log(`\t\t${adhan}\t${iqamah}`);
-  }
-}
-
-function printPrayer(name: PrayerName, prayer: Prayer | Prayer[] | undefined) {
-  if (prayer === undefined) {
-    console.log(`\t${prayerName(name)}`);
-  } else if (Array.isArray(prayer)) {
-    printMultipleJamat(name, prayer);
-  } else {
-    printSingleJamat(name, prayer);
-  }
-}
-
-function printDay(schedule: DaySchedule) {
-  const day = guessDay(schedule);
-  console.log(chalk.whiteBright.bold(day.toFormat("MMMM dd")));
-
-  printPrayer("fajr", schedule.fajr);
-  printPrayer("zuhr", schedule.zuhr);
-  printPrayer("asr", schedule.asr);
-  printPrayer("maghrib", schedule.maghrib);
-  if (day.weekday === FRIDAY) {
-    printPrayer("jummah", schedule.jummah);
-  }
-  printPrayer("isha", schedule.isha);
-}
-
-function printTimeTable(table: PrayerTimeTable) {
-  for (const day of table) {
-    printDay(day);
-  }
 }
 
 async function handlerAsync(args: ScrapeArguments) {

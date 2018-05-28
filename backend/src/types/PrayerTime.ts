@@ -16,8 +16,8 @@ export type PrayerName =
 
 /** Represents the adhan and iqamah time for a single prayer jamat */
 export interface Prayer {
-  adhan?: DateTime;
-  iqamah: DateTime;
+  adhan?: DateTime | string;
+  iqamah: DateTime | string;
   confidence: number;
 }
 

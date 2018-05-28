@@ -13,6 +13,7 @@ import * as yargs from "yargs";
 
 import * as addMosqueCommand from "./commands/addmosque";
 import * as archiveCommand from "./commands/archive";
+import * as lookupCommand from "./commands/lookup";
 import * as scrapeCommand from "./commands/scrape";
 
 Settings.throwOnInvalid = true;
@@ -21,6 +22,7 @@ Settings.throwOnInvalid = true;
 yargs
   .command(addMosqueCommand)
   .command(archiveCommand)
+  .command(lookupCommand)
   .command(scrapeCommand)
   .demandCommand()
   .help().argv;

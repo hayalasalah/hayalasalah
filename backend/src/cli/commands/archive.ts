@@ -15,8 +15,9 @@ import { getMonthlyTimetableId, openCollection } from "../../database";
 import { scrape, scrapersList } from "../../scrapers";
 import { MonthlyTimetable } from "../../types/Mosque";
 import { DaySchedule, PrayerTimeTable } from "../../types/PrayerTime";
+import { guessDay } from "../../utils";
 import { connectToBrowser } from "../utils/browser";
-import { guessDay, updateSchedule } from "../utils/time";
+import { updateSchedule } from "../utils/time";
 
 export const command = "archive <mosque>";
 export const describe = "Scrape a mosque and save the results to db";

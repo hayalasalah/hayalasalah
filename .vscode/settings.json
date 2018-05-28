@@ -1,0 +1,7 @@
+{
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "tslint.autoFixOnSave": true,
+  "licenser.author": "Hay Ala Salah",
+  "licenser.license": "MPLv2",
+  "editor.formatOnSave": true
+}

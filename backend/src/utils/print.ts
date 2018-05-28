@@ -5,13 +5,13 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import chalk from "chalk";
+import { FRIDAY, guessDay, toDateTime } from ".";
 import {
   DaySchedule,
   Prayer,
   PrayerName,
   PrayerTimeTable
-} from "../../types/PrayerTime";
-import { FRIDAY, guessDay, toDateTime } from "../../utils";
+} from "../types/PrayerTime";
 
 // tslint:disable:no-console
 

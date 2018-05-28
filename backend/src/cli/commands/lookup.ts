@@ -8,7 +8,7 @@ import { DateTime } from "luxon";
 import { Argv } from "yargs";
 import { getMonthlyTimetableId, openCollection } from "../../database";
 import { MonthlyTimetable } from "../../types/Mosque";
-import { printDay } from "../utils/print";
+import { printDay } from "../../utils/print";
 
 // tslint:disable:no-console
 

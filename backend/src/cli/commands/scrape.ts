@@ -16,8 +16,8 @@ import {
   PrayerName,
   PrayerTimeTable
 } from "../../types/PrayerTime";
-import { connectToBrowser } from "../utils/browser";
-import { printTimeTable } from "../utils/print";
+import { connectToBrowser } from "../../utils/browser";
+import { printTimeTable } from "../../utils/print";
 
 export const command = "scrape <mosque>";
 export const describe = "Scrape a mosque and pretty print the result";

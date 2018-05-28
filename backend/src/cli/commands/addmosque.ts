@@ -27,8 +27,8 @@ import {
   getAdhanTimes,
   Madhab,
   stringToPoint
-} from "../utils/adhanUtil";
-import { jsDateToDateTime } from "../utils/time";
+} from "../../utils/adhanUtil";
+import { jsDateToDateTime } from "../../utils/time";
 
 type ReadLinePromise = ReadLine & {
   questionAsync: (q: string) => Promise<string>;

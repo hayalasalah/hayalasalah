@@ -5,7 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import { DateTime, Duration } from "luxon";
-import { DaySchedule } from "../../types/PrayerTime";
+import { DaySchedule } from "../types/PrayerTime";
 import { jsDateToDateTime } from "./time";
 
 // tslint:disable-next-line:no-implicit-dependencies

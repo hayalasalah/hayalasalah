@@ -5,7 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import { DateTime } from "luxon";
-import { DaySchedule, Prayer, PrayerName } from "../../types/PrayerTime";
+import { DaySchedule, Prayer, PrayerName } from "../types/PrayerTime";
 
 export function jsDateToDateTime(date: any, timezone: string): DateTime {
   const dt = DateTime.fromJSDate(date).setZone(timezone);

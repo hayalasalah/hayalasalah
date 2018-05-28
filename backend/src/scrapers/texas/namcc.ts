@@ -25,7 +25,9 @@ export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
   abortMediaRequests(page);
 
-  await page.goto("http://www.namcc.org/prayer-time-table/");
+  await page.goto("http://www.namcc.org/prayer-time-table/", {
+    waitUntil: "domcontentloaded"
+  });
 
   const daysInCurrentMonth = DateTime.local().setZone("America/Chicago")
     .daysInMonth;

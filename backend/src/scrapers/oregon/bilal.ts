@@ -24,7 +24,9 @@ export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
   abortMediaRequests(page);
 
-  await page.goto("http://www.bilalmasjid.com/Prayer/Daily.aspx");
+  await page.goto("http://www.bilalmasjid.com/Prayer/Daily.aspx", {
+    waitUntil: "domcontentloaded"
+  });
 
   const daysInCurrentMonth = DateTime.local().setZone("America/Los_Angeles")
     .daysInMonth;

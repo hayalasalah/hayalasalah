@@ -56,7 +56,9 @@ export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
   abortMediaRequests(page);
 
-  await page.goto("http://www.masjidbilalnz.org/");
+  await page.goto("http://www.masjidbilalnz.org/", {
+    waitUntil: "domcontentloaded"
+  });
 
   const fajr = await getTime(page, 1, true);
   const zuhr = await getTime(page, 2, false);

@@ -21,7 +21,9 @@ export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
   await abortMediaRequests(page);
 
-  await page.goto("http://icbrushycreek.org/ramadan/");
+  await page.goto("http://icbrushycreek.org/ramadan/", {
+    waitUntil: "domcontentloaded"
+  });
 
   const tableIndices = [1, 3, 4, 5, 6];
   const times = await Promise.all(

@@ -37,7 +37,9 @@ export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
   const page = await browser.newPage();
   await abortMediaRequests(page);
 
-  await page.goto("http://www.redmondmosque.org");
+  await page.goto("http://www.redmondmosque.org", {
+    waitUntil: "domcontentloaded"
+  });
 
   const results = [];
 

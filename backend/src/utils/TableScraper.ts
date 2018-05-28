@@ -20,14 +20,14 @@ export async function scrapeTableRow(
   page: Page | Frame,
   params: TableScraperParams
 ): Promise<Prayer> {
-  const isFajr = params.isFajr === undefined ? false : params.isFajr;
+  const addHalfDay = params.isFajr === undefined ? false : !params.isFajr;
 
   const adhanString = await getDataForXPath(page, params.adhanXPath);
   const adhan = stringToDateTime(
     adhanString,
     params.timeFormat,
     params.timeZone,
-    !isFajr
+    addHalfDay
   );
 
   const iqamahString = await getDataForXPath(page, params.iqamahXPath);
@@ -35,7 +35,7 @@ export async function scrapeTableRow(
     iqamahString,
     params.timeFormat,
     params.timeZone,
-    !isFajr
+    addHalfDay
   );
 
   return {

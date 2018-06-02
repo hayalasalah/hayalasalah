@@ -26,3 +26,19 @@ export type DaySchedule = { [Name in PrayerName]?: Prayer | Prayer[] };
 
 /** Prayer times over multiple days */
 export type PrayerTimeTable = DaySchedule[];
+
+export type MonthName =
+  | "jan"
+  | "feb"
+  | "mar"
+  | "apr"
+  | "may"
+  | "jun"
+  | "jul"
+  | "aug"
+  | "sep"
+  | "oct"
+  | "nov"
+  | "dec";
+
+export type YearTable = { [Name in MonthName]: PrayerTimeTable };

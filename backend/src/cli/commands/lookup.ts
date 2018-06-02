@@ -6,7 +6,11 @@
 
 import { DateTime } from "luxon";
 import { Argv } from "yargs";
-import { getMonthlyTimetableId, openCollection } from "../../database";
+import {
+  getMonthlyTimetableId,
+  getTimesForToday,
+  openCollection
+} from "../../database";
 import { MonthlyTimetable } from "../../types/Mosque";
 import { printDay } from "../../utils/print";
 
@@ -22,12 +26,7 @@ export interface LookupArguments extends Argv {
 
 async function handlerAsync(args: LookupArguments) {
   const collection = await openCollection();
-  const today = DateTime.local();
-
-  const timetableId = getMonthlyTimetableId(args.mosque, today.month);
-  const doc = await collection.findDocumentAsync<MonthlyTimetable>(timetableId);
-
-  const daySchedule = doc.timetable[today.day - 1];
+  const daySchedule = await getTimesForToday(collection, args.mosque);
   printDay(daySchedule);
 }
 

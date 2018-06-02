@@ -6,7 +6,7 @@
 
 import { DateTime } from "luxon";
 import { Browser, Page } from "puppeteer";
-import { DaySchedule, Prayer, PrayerTimeTable } from "../../types/PrayerTime";
+import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
 import { getAdhanTimes } from "../../utils/adhanUtil";
 import { jsDateToDateTime } from "../../utils/time";
 import {
@@ -19,7 +19,7 @@ const getXPath = (i: number) =>
   `//*[@id="wsite-content"]/div[2]/div/div/table/tbody/tr/td[2]/div[1]/font/strong[${i}]/font`;
 
 function getTimeString(prayerAndTimeString: string): string {
-  const [_, hour, minute] = prayerAndTimeString.split(":", 3);
+  const [, hour, minute] = prayerAndTimeString.split(":", 3);
   return `${hour}:${minute}`.trim();
 }
 

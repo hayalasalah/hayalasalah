@@ -12,7 +12,6 @@ import {
   abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
-  getTableData,
   stringToDateTime
 } from "../utils";
 

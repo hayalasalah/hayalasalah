@@ -7,7 +7,6 @@
 import { DateTime } from "luxon";
 import { Browser } from "puppeteer";
 import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
-import { snooze } from "../../utils";
 import { getAdhanTimes } from "../../utils/adhanUtil";
 import { scrapeTableRow } from "../../utils/TableScraper";
 import { jsDateToDateTime } from "../../utils/time";

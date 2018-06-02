@@ -6,7 +6,6 @@
 
 import { Browser } from "puppeteer";
 import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
-import { snooze } from "../../utils";
 import { scrapeTableRow } from "../../utils/TableScraper";
 import {
   abortMediaRequests,
@@ -29,7 +28,7 @@ export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
     waitUntil: "networkidle2"
   });
 
-  const [_, frame] = page.frames();
+  const [, frame] = page.frames();
 
   const tableIndices = [1, 3, 4, 5, 6];
   const times: Prayer[] = [];

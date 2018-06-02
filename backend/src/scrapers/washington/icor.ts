@@ -4,20 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import { DateTime, Duration } from "luxon";
 import { Browser } from "puppeteer";
-import {
-  DaySchedule,
-  Prayer,
-  PrayerName,
-  PrayerTimeTable
-} from "../../types/PrayerTime";
+import { PrayerTimeTable } from "../../types/PrayerTime";
 import { guessDay } from "../../utils";
 import {
   abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
-  getTableData,
   stringToDateTime
 } from "../utils";
 

@@ -8,7 +8,6 @@ import { Browser, Page } from "puppeteer";
 import { PrayerTimeTable } from "../../types/PrayerTime";
 import { guessDay, snooze } from "../../utils";
 import {
-  abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
   stringToDateTime

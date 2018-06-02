@@ -5,7 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import { Browser } from "puppeteer";
-import { DaySchedule, PrayerTimeTable } from "../../types/PrayerTime";
+import { PrayerTimeTable } from "../../types/PrayerTime";
 import { stringToDateTime } from "../utils";
 import { scrapeAdams } from "./adams";
 

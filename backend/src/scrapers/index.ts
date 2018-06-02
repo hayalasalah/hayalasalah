@@ -4,11 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import { resolve } from "path";
-
-import { Browser, connect } from "puppeteer";
-import { DaySchedule, PrayerTimeTable } from "../types/PrayerTime";
-import { scrapersList } from "./list";
+import { Browser } from "puppeteer";
+import { PrayerTimeTable } from "../types/PrayerTime";
 
 interface ScrapeModule {
   scrape: (browser: Browser) => Promise<PrayerTimeTable>;

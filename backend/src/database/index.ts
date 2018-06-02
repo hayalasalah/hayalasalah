@@ -4,7 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import { Collection, Database } from "documentdb-typescript";
+import { Collection, Database, StoreMode } from "documentdb-typescript";
+import { MonthlyTimetable } from "../types/Mosque";
+import { PrayerTimeTable } from "../types/PrayerTime";
+import { guessDay } from "../utils";
+import { updateSchedule } from "../utils/time";
 import { config } from "./config";
 
 export async function openCollection(): Promise<Collection> {
@@ -42,4 +46,23 @@ export function getMonthlyTimetableId(tag: string, month: number) {
     throw Error(`Invalid month: ${month}`);
   }
   return `timetable-${toID(tag)}-${months[month]}`;
+}
+
+export async function updateDB(
+  collection: Collection,
+  mosque: string,
+  month: number,
+  timetable: PrayerTimeTable
+) {
+  const timetableId = getMonthlyTimetableId(mosque, month);
+  const doc = await collection.findDocumentAsync<MonthlyTimetable>(timetableId);
+
+  for (const day of timetable) {
+    const dayOfMonth = guessDay(day).day - 1;
+
+    updateSchedule(doc.timetable[dayOfMonth], day);
+    doc.timetable[dayOfMonth] = day;
+  }
+
+  await collection.storeDocumentAsync(doc, StoreMode.UpdateOnly);
 }

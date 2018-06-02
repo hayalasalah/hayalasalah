@@ -11,7 +11,11 @@ import { Collection, StoreMode } from "documentdb-typescript";
 import { groupBy } from "lodash";
 import { Browser } from "puppeteer";
 import { Argv } from "yargs";
-import { getMonthlyTimetableId, openCollection } from "../../database";
+import {
+  getMonthlyTimetableId,
+  openCollection,
+  updateDB
+} from "../../database";
 import { scrape, scrapersList } from "../../scrapers";
 import { MonthlyTimetable } from "../../types/Mosque";
 import { DaySchedule, PrayerTimeTable } from "../../types/PrayerTime";
@@ -34,26 +38,6 @@ function groupByMonth(times: PrayerTimeTable) {
   });
 }
 
-async function updateDB(
-  collection: Collection,
-  mosque: string,
-  month: number,
-  timetable: PrayerTimeTable
-) {
-  const timetableId = getMonthlyTimetableId(mosque, month);
-  const doc = await collection.findDocumentAsync<MonthlyTimetable>(timetableId);
-
-  for (const day of timetable) {
-    const dayOfMonth = guessDay(day).day - 1;
-
-    updateSchedule(doc.timetable[dayOfMonth], day);
-    doc.timetable[dayOfMonth] = day;
-  }
-
-  await collection.storeDocumentAsync(doc, StoreMode.UpdateOnly);
-  console.log(chalk.white(`Updated monthly timetable ${timetableId}`));
-}
-
 async function archiveOneMosque(
   collection: Collection,
   browser: Browser,
@@ -68,6 +52,11 @@ async function archiveOneMosque(
         throw Error(`Bad month: ${month}`);
       }
       await updateDB(collection, mosque, month, groupedByMonth[m]);
+      console.log(
+        chalk.white(
+          `Updated monthly timetable ${getMonthlyTimetableId(mosque, month)}`
+        )
+      );
     }
     console.log(
       chalk.greenBright.bold(

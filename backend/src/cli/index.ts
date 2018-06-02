@@ -8,9 +8,7 @@
 
 import "../database/env"; // necessary to run
 
-import chalk from "chalk";
 import { Settings } from "luxon";
-import { connect } from "puppeteer";
 import * as yargs from "yargs";
 
 import * as addMosqueCommand from "./commands/addmosque";

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Copyright (c) 2018 Hay Ala Salah
 //
 // This Source Code Form is subject to the terms of the Mozilla Public

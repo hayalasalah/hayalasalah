@@ -3,3 +3,11 @@ tslint.json
 tsconfig.json
 .vscode/
 yarn.lock
+.env
+.env.example
+
+Dockerfile
+docker-compose.yml
+docker-compose.example.yml
+traefik.toml
+traefik.example.toml

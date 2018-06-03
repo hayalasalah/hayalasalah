@@ -1,0 +1,29 @@
+version: "2"
+services:
+  api:
+    image: hayalasalah/hayalasalah:latest
+    env_file:
+      - .env
+    networks:
+      - webgateway
+    labels:
+      - "traefik.backend=api"
+      - "traefik.frontend.rule=Host:example.com"
+      - "traefik.enable=true"
+
+  proxy:
+    image: traefik
+    command: --web --docker --docker.domain=docker.localhost
+    networks:
+      - webgateway
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+          - ./traefik.toml:/traefik.toml
+          - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+    webgateway:
+        driver: bridge

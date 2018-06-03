@@ -1,11 +1,12 @@
 {
-  "name": "hayalasalah",
-  "version": "1.0.0",
+  "name": "@hayalasalah/hayalasalah",
+  "version": "1.0.3",
   "description": "Server and tools for Hay Ala Salah",
   "author": "Zuhair Parvez",
   "license": "MPL-2.0",
   "bin": {
-    "has-cli": "cli/index.js"
+    "has-cli": "dist/cli/index.js",
+    "has-server": "dist/server/index.js"
   },
   "devDependencies": {
     "@types/chalk": "^2.2.0",

@@ -5,6 +5,10 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 {
-  "files": [],
-  "references": [{ "path": "types" }, { "path": "utils" }]
+  "extends": "../../tsconfig.settings.json",
+  "compilerOptions": {
+    "outDir": "../../dist/scrapers",
+    "rootDir": "."
+  },
+  "references": [{ "path": "../types" }, { "path": "../utils" }]
 }

@@ -8,13 +8,13 @@ import { DateTime } from "luxon";
 import { Browser } from "puppeteer";
 import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
 import { getAdhanTimes } from "../../utils/adhanUtil";
-import { scrapeTableRow } from "../../utils/TableScraper";
 import { jsDateToDateTime } from "../../utils/time";
 import {
   abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   stringToDateTime
 } from "../utils";
+import { scrapeTableRow } from "../utils/TableScraper";
 
 const getXPath = (i: number) =>
   `//*[@id="mosqueprayertimingswidgetplugin-2"]/table/tbody/tr[${i}]/td[2]`;

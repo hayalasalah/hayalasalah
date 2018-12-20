@@ -6,13 +6,13 @@
 
 import { Browser } from "puppeteer";
 import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
-import { scrapeTableRow } from "../../utils/TableScraper";
 import {
   abortMediaRequests,
   arrayOfPrayersToDaySchedule,
   getDataForXPath,
   stringToDateTime
 } from "../utils";
+import { scrapeTableRow } from "../utils/TableScraper";
 
 function getXPathString(prayerIndex: number, adhan: boolean) {
   return `//*[@id="mma-salahTimesContainer"]/table/tbody/tr[${prayerIndex}]/td[${

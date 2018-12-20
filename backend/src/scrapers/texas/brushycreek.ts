@@ -27,15 +27,22 @@ export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
 
   const tableIndices = [1, 3, 4, 5, 6];
   const times = await Promise.all(
-    tableIndices.map(async (tableIndex, index): Promise<Prayer> => {
-      const isFajr = index === 0;
-      const xpath = getIqamahXPath(tableIndex);
-      const timeString = await getDataForXPath(page, xpath);
-      return {
-        confidence: 100,
-        iqamah: stringToDateTime(timeString, "h:mm", "America/Chicago", !isFajr)
-      };
-    })
+    tableIndices.map(
+      async (tableIndex, index): Promise<Prayer> => {
+        const isFajr = index === 0;
+        const xpath = getIqamahXPath(tableIndex);
+        const timeString = await getDataForXPath(page, xpath);
+        return {
+          confidence: 100,
+          iqamah: stringToDateTime(
+            timeString,
+            "h:mm",
+            "America/Chicago",
+            !isFajr
+          )
+        };
+      }
+    )
   );
 
   await page.close();

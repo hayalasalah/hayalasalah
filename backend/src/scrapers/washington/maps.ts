@@ -37,29 +37,31 @@ export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
     const tableIndices = [3, 6, 9, 11, 13];
 
     const timesForDay = await Promise.all(
-      tableIndices.map(async (tableIndex, index): Promise<Prayer> => {
-        const isFajr = index === 0;
+      tableIndices.map(
+        async (tableIndex, index): Promise<Prayer> => {
+          const isFajr = index === 0;
 
-        const adhanXPath = getXPathString(day, tableIndex);
-        const adhanTimeString = await getDataForXPath(page, adhanXPath);
+          const adhanXPath = getXPathString(day, tableIndex);
+          const adhanTimeString = await getDataForXPath(page, adhanXPath);
 
-        const iqamahXPath = getXPathString(day, tableIndex + 1);
-        const iqamahTimeString = await getDataForXPath(page, iqamahXPath);
+          const iqamahXPath = getXPathString(day, tableIndex + 1);
+          const iqamahTimeString = await getDataForXPath(page, iqamahXPath);
 
-        return {
-          adhan: stringToDateTime(
-            adhanTimeString,
-            "h:mm a",
-            "America/Los_Angeles"
-          ).set({ day: day - 2 }),
-          iqamah: stringToDateTime(
-            iqamahTimeString,
-            "h:mm a",
-            "America/Los_Angeles"
-          ).set({ day: day - 2 }),
-          confidence: 100
-        };
-      })
+          return {
+            adhan: stringToDateTime(
+              adhanTimeString,
+              "h:mm a",
+              "America/Los_Angeles"
+            ).set({ day: day - 2 }),
+            iqamah: stringToDateTime(
+              iqamahTimeString,
+              "h:mm a",
+              "America/Los_Angeles"
+            ).set({ day: day - 2 }),
+            confidence: 100
+          };
+        }
+      )
     );
     monthTable.push(arrayOfPrayersToDaySchedule(timesForDay));
   }

@@ -35,33 +35,35 @@ export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
     const tableIndices = [3, 6, 8, 10, 12];
 
     const timesForDay = await Promise.all(
-      tableIndices.map(async (tableIndex, index): Promise<Prayer> => {
-        const isFajr = index === 0;
+      tableIndices.map(
+        async (tableIndex, index): Promise<Prayer> => {
+          const isFajr = index === 0;
 
-        const adhanXPath = getXPathString(day, tableIndex);
-        const adhanTimeString = await getDataForXPath(page, adhanXPath);
-        const adhanTime = stringToDateTime(
-          adhanTimeString,
-          "h:mm",
-          "America/Los_Angeles",
-          !isFajr
-        ).set({ day: day - 1 });
+          const adhanXPath = getXPathString(day, tableIndex);
+          const adhanTimeString = await getDataForXPath(page, adhanXPath);
+          const adhanTime = stringToDateTime(
+            adhanTimeString,
+            "h:mm",
+            "America/Los_Angeles",
+            !isFajr
+          ).set({ day: day - 1 });
 
-        const iqamahXPath = getXPathString(day, tableIndex + 1);
-        const iqamahTimeString = await getDataForXPath(page, iqamahXPath);
-        const iqamahTime = stringToDateTime(
-          iqamahTimeString,
-          "h:mm",
-          "America/Los_Angeles",
-          !isFajr
-        ).set({ day: day - 1 });
+          const iqamahXPath = getXPathString(day, tableIndex + 1);
+          const iqamahTimeString = await getDataForXPath(page, iqamahXPath);
+          const iqamahTime = stringToDateTime(
+            iqamahTimeString,
+            "h:mm",
+            "America/Los_Angeles",
+            !isFajr
+          ).set({ day: day - 1 });
 
-        return {
-          adhan: adhanTime,
-          iqamah: iqamahTime,
-          confidence: 100
-        };
-      })
+          return {
+            adhan: adhanTime,
+            iqamah: iqamahTime,
+            confidence: 100
+          };
+        }
+      )
     );
     const schedule = arrayOfPrayersToDaySchedule(timesForDay);
 

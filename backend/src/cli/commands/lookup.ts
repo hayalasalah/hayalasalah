@@ -11,7 +11,6 @@ import {
   getTimesForToday,
   openCollection
 } from "../../database";
-import { MonthlyTimetable } from "../../types/Mosque";
 import { printDay } from "../../utils/print";
 
 // tslint:disable:no-console

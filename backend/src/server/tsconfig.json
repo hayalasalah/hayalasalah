@@ -1,0 +1,19 @@
+// Copyright (c) 2018 Hay Ala Salah
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+{
+  "extends": "../../tsconfig.settings.json",
+  "compilerOptions": {
+    "outDir": "../../dist/server",
+    "rootDir": "."
+  },
+  "references": [
+    { "path": "../types" },
+    { "path": "../utils" },
+    { "path": "../database" },
+    { "path": "../scrapers" }
+  ]
+}

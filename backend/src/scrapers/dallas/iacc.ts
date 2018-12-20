@@ -8,8 +8,8 @@ import { DateTime } from "luxon";
 import { Browser } from "puppeteer";
 import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
 import { toDateTime } from "../../utils";
-import { scrapeTableRow } from "../../utils/TableScraper";
 import { abortMediaRequests, arrayOfPrayersToDaySchedule } from "../utils";
+import { scrapeTableRow } from "../utils/TableScraper";
 
 function getXPathString(day: number, index: number) {
   return `//*[@id="prayeSchedulePrint"]/tbody/tr[${day}]/td[${index}]`;

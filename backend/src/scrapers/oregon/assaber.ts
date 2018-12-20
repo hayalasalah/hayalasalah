@@ -15,7 +15,7 @@ import {
 } from "../utils";
 
 function getXPathString(day: number, index: number) {
-  return `//*[@id="calendar"]/div[6]/table/tbody/tr[${day}]/td[${index}]`;
+  return `//*[@id="calendar"]/div[13]/table/tbody/tr[${day}]/td[${index}]`;
 }
 
 export async function scrape(browser: Browser): Promise<PrayerTimeTable> {

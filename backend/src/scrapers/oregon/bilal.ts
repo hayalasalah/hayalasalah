@@ -41,18 +41,28 @@ export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
 
           const adhanXPath = getXPathString(day, tableIndex);
           const adhanTimeString = await getDataForXPath(page, adhanXPath);
-          const adhanTime = stringToDateTime(
+
+          let adhanTime = stringToDateTime(
             adhanTimeString,
-            "h:mm",
+            "h:mm a",
             "America/Los_Angeles",
             !isFajr
           ).set({ day: day - 1 });
+
+          if (adhanTime.isValid === false) {
+            adhanTime = stringToDateTime(
+              adhanTimeString,
+              "h:mma",
+              "America/Los_Angeles",
+              !isFajr
+            ).set({ day: day - 1 });
+          }
 
           const iqamahXPath = getXPathString(day, tableIndex + 1);
           const iqamahTimeString = await getDataForXPath(page, iqamahXPath);
           const iqamahTime = stringToDateTime(
             iqamahTimeString,
-            "h:mm",
+            "h:mm a",
             "America/Los_Angeles",
             !isFajr
           ).set({ day: day - 1 });

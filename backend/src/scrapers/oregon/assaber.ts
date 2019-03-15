@@ -6,6 +6,7 @@
 
 import { DateTime } from "luxon";
 import { Browser } from "puppeteer";
+import { guessDay } from "../../../dist/utils";
 import { Prayer, PrayerTimeTable } from "../../types/PrayerTime";
 import {
   abortMediaRequests,
@@ -15,7 +16,7 @@ import {
 } from "../utils";
 
 function getXPathString(day: number, index: number) {
-  return `//*[@id="calendar"]/div[13]/table/tbody/tr[${day}]/td[${index}]`;
+  return `//*[@id="calendar"]/div[4]/table/tbody/tr[${day}]/td[${index}]`;
 }
 
 export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
@@ -60,7 +61,12 @@ export async function scrape(browser: Browser): Promise<PrayerTimeTable> {
         }
       )
     );
-    monthTable.push(arrayOfPrayersToDaySchedule(timesForDay));
+    const schedule = arrayOfPrayersToDaySchedule(timesForDay);
+    if (guessDay(schedule).weekday === 5) {
+      schedule.jummah = schedule.zuhr;
+      schedule.zuhr = undefined;
+    }
+    monthTable.push(schedule);
   }
 
   await page.close();

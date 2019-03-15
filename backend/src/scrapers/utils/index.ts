@@ -44,9 +44,6 @@ export function stringToDateTime(
   const dt = DateTime.fromString(time, format, {
     zone: timeZone
   });
-  if (dt.isValid === false) {
-    throw Error(`Invalid DT: ${dt.invalidReason}`);
-  }
   return dt.plus(Duration.fromObject({ hours: hoursOffset }));
 }
 

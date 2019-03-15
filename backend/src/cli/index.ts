@@ -8,7 +8,6 @@
 
 import "../database/env"; // necessary to run
 
-import { Settings } from "luxon";
 import * as yargs from "yargs";
 
 import * as addMosqueCommand from "./commands/addmosque";
@@ -16,7 +15,9 @@ import * as archiveCommand from "./commands/archive";
 import * as lookupCommand from "./commands/lookup";
 import * as scrapeCommand from "./commands/scrape";
 
-Settings.throwOnInvalid = true;
+// Enable if debugging
+// import { Settings } from "luxon";
+// Settings.throwOnInvalid = true;
 
 // tslint:disable-next-line:no-unused-expression
 yargs

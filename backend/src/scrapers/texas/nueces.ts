@@ -22,10 +22,11 @@ function getHourMinute(text: string): number[] {
   return [parseInt(pieces[0], 10), parseInt(pieces[1], 10)];
 }
 
-function buildTime(base: DateTime, text: string): DateTime {
+function buildTime(base: DateTime, text: string, addHalfDay = true): DateTime {
   const [hour, minute] = getHourMinute(text);
+  const adjustment = addHalfDay && hour !== 12 ? 12 : 0;
   return base.set({
-    hour,
+    hour: hour + adjustment,
     minute
   });
 }
@@ -39,8 +40,8 @@ function parseDay(iqamah: any): DaySchedule {
   }
 
   const fajr: Prayer = {
-    adhan: buildTime(baseDate, getText(iqamah, 5)),
-    iqamah: buildTime(baseDate, getText(iqamah, 7)),
+    adhan: buildTime(baseDate, getText(iqamah, 5), false),
+    iqamah: buildTime(baseDate, getText(iqamah, 7), false),
     confidence: 100
   };
 
@@ -71,11 +72,11 @@ function parseDay(iqamah: any): DaySchedule {
   const jummah = [
     {
       confidence: 100,
-      iqamah: stringToDateTime("13:05", "HH:mm", "America/Chicago")
+      iqamah: baseDate.set({ hour: 13, minute: 5 })
     },
     {
       confidence: 100,
-      iqamah: stringToDateTime("14:05", "HH:mm", "America/Chicago")
+      iqamah: baseDate.set({ hour: 14, minute: 5 })
     }
   ];
 
